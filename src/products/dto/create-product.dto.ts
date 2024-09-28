@@ -1,6 +1,6 @@
 import { IsIn, IsInt, IsNumber, IsOptional, IsString, IsUUID, MaxLength } from "class-validator";
 import { Product } from "../entities/product.entity";
-import { Provider } from "@nestjs/common";
+import { Provider } from '../../providers/entities/provider.entity';
 
 export class CreateProductDto extends Product{
     @IsString()
