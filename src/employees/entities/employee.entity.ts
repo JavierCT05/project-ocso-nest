@@ -1,5 +1,5 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
-import { last } from 'rxjs';
+
 @Entity()
 export class Employee {
     @PrimaryGeneratedColumn('uuid')
@@ -12,5 +12,10 @@ export class Employee {
     phoneNumber: string;
     @Column('text')
     email: string;
+    @Column({
+        type: 'text',
+        nullable:true
+    })
+    phothoUrl: string;
 
 }
