@@ -1,11 +1,11 @@
 import { Injectable, UnauthorizedException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { User } from "./entities/user.entity";
+import { User } from "./user.entity";
 import { Repository } from "typeorm";
 import { CreateUserDto } from "./dto/create-user.dto";
 import { JwtService } from "@nestjs/jwt";
-
-import { LoginUserDto } from "./dto/login-user.dto";
+import * as bcrypt from "bcrypt";
+import { LoginUserDto } from "./dto/login-user";
 @Injectable()
 export class AuthService {
   constructor(
@@ -28,8 +28,9 @@ export class AuthService {
     );
     if (!match) throw new UnauthorizedException("No estas autorizado");
     const payload = {
-      user: user.userEmail,
-      password: user.userPassword,
+      userEmail: user.userEmail,
+      userPassword: user.userPassword,
+      userRoles: user.userRoles
     };
     const token = this.jwtService.sign(payload);
     return token;
