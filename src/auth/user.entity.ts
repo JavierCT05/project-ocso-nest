@@ -6,7 +6,9 @@ import { Entity, PrimaryGeneratedColumn, Column, OneToOne } from "typeorm";
 export class User{
   @PrimaryGeneratedColumn('uuid')
   userId: string;
-  @Column('text')
+  @Column('text', {
+    unique: true,
+  })
   userEmail: string;
   @Column('text')
   userPassword: string;
